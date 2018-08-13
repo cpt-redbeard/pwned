@@ -15,7 +15,11 @@ pwned_verdict=$(curl -s -o /dev/null -w "%{http_code}" "https://haveibeenpwned.c
    #sleep is meant to not overload the API
 sleep 2
 pwned_reason=$(curl -s -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41' "https://haveibeenpwned.com/api/v2/breachedaccount/""$pwned""?truncateResponse=true")
-echo "$pwned_reason"
+
+if [ -z "$pwned_reason" ]
+then
+echo "***""$pwned_reason""***"
+fi
 
 
 if [ "$pwned_verdict" == "$owned" ]
