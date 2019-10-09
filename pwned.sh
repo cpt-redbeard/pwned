@@ -26,7 +26,7 @@ cat << 'EOF'
 EOF
 
 
-input="emails.txt"
+input=$1
 while IFS= read -r pwned
 do
 #output for each email address
